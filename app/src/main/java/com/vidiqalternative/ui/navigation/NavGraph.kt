@@ -22,8 +22,10 @@ import com.vidiqalternative.ui.search.SearchScreen
 import com.vidiqalternative.ui.ai.AIChatScreen
 import com.vidiqalternative.ui.settings.AISettingsScreen
 import com.vidiqalternative.ui.analytics.AnalyticsScreen
+import com.vidiqalternative.ui.setup.SetupScreen
 
 sealed class Screen(val route: String) {
+    data object Setup : Screen("setup")
     data object Home : Screen("home")
     data object Search : Screen("search")
     data object AIChat : Screen("ai_chat")
@@ -36,12 +38,23 @@ sealed class Screen(val route: String) {
 
 @Composable
 fun NavGraph(
-    navController: NavHostController
+    navController: NavHostController,
+    startDestination: String = Screen.Home.route
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Home.route
+        startDestination = startDestination
     ) {
+        composable(Screen.Setup.route) {
+            SetupScreen(
+                onSetupComplete = {
+                    navController.navigate(Screen.Home.route) {
+                        popUpTo(Screen.Setup.route) { inclusive = true }
+                    }
+                }
+            )
+        }
+
         composable(Screen.Home.route) {
             HomeScreen(
                 onSearchClick = { navController.navigate(Screen.Search.route) },

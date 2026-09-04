@@ -5,6 +5,7 @@ import com.vidiqalternative.data.api.OpenRouterApiService
 import com.vidiqalternative.data.api.YouTubeApiService
 import com.vidiqalternative.data.web.DDGSearchService
 import com.vidiqalternative.data.web.WebFetchService
+import com.vidiqalternative.data.repository.ApiKeyRepository
 import com.vidiqalternative.data.repository.ModelRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -77,6 +78,14 @@ object AppModule {
     @Singleton
     fun provideWebFetchService(okHttpClient: OkHttpClient): WebFetchService {
         return WebFetchService(okHttpClient)
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiKeyRepository(
+        @ApplicationContext context: Context
+    ): ApiKeyRepository {
+        return ApiKeyRepository(context)
     }
 
     @Provides

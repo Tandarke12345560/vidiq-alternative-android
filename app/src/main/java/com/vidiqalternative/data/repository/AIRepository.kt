@@ -8,6 +8,7 @@ import com.vidiqalternative.data.api.ToolCall
 import com.vidiqalternative.util.SystemPrompt
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -17,6 +18,7 @@ class AIRepository @Inject constructor(
     private val openRouterService: OpenRouterApiService,
     private val aiTools: AICoachTools,
     private val modelRepository: ModelRepository,
+    private val apiKeyRepository: ApiKeyRepository,
     private val gson: Gson
 ) {
 
@@ -26,7 +28,7 @@ class AIRepository @Inject constructor(
         conversationHistory: MutableList<Message> = mutableListOf()
     ): Result<String> = withContext(Dispatchers.IO) {
         try {
-            val apiKey = modelRepository.getApiKeySync()
+            val apiKey = apiKeyRepository.openrouterApiKey.first()
             if (apiKey.isBlank()) {
                 return@withContext Result.failure(Exception("OpenRouter API anahtarı tanımlanmamış"))
             }

@@ -1,35 +1,36 @@
 package com.vidiqalternative.data.repository
 
-import com.vidiqalternative.BuildConfig
 import com.vidiqalternative.data.api.ChannelItem
 import com.vidiqalternative.data.api.SearchItem
 import com.vidiqalternative.data.api.VideoItem
 import com.vidiqalternative.data.api.YouTubeApiService
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class YouTubeRepository @Inject constructor(
-    private val youtubeService: YouTubeApiService
+    private val youtubeService: YouTubeApiService,
+    private val apiKeyRepository: ApiKeyRepository
 ) {
 
-    private val apiKey: String = BuildConfig.YOUTUBE_API_KEY
+    private suspend fun getApiKey(): String = apiKeyRepository.youtubeApiKey.first()
 
     suspend fun searchVideos(
         query: String,
         maxResults: Int = 10
     ): Result<List<SearchItem>> = withContext(Dispatchers.IO) {
         try {
-            if (apiKey.isBlank()) {
+            if (getApiKey().isBlank()) {
                 return@withContext Result.failure(Exception("YouTube API anahtarı tanımlanmamış"))
             }
 
             val response = youtubeService.searchVideos(
                 query = query,
                 maxResults = maxResults,
-                apiKey = apiKey
+                apiKey = getApiKey()
             )
 
             if (response.isSuccessful) {
@@ -45,13 +46,13 @@ class YouTubeRepository @Inject constructor(
 
     suspend fun getVideoDetails(videoId: String): Result<VideoItem?> = withContext(Dispatchers.IO) {
         try {
-            if (apiKey.isBlank()) {
+            if (getApiKey().isBlank()) {
                 return@withContext Result.failure(Exception("YouTube API anahtarı tanımlanmamış"))
             }
 
             val response = youtubeService.getVideoDetails(
                 id = videoId,
-                apiKey = apiKey
+                apiKey = getApiKey()
             )
 
             if (response.isSuccessful) {
@@ -67,13 +68,13 @@ class YouTubeRepository @Inject constructor(
 
     suspend fun getChannelDetails(channelId: String): Result<ChannelItem?> = withContext(Dispatchers.IO) {
         try {
-            if (apiKey.isBlank()) {
+            if (getApiKey().isBlank()) {
                 return@withContext Result.failure(Exception("YouTube API anahtarı tanımlanmamış"))
             }
 
             val response = youtubeService.getChannelDetails(
                 id = channelId,
-                apiKey = apiKey
+                apiKey = getApiKey()
             )
 
             if (response.isSuccessful) {
@@ -92,14 +93,14 @@ class YouTubeRepository @Inject constructor(
         maxResults: Int = 10
     ): Result<List<SearchItem>> = withContext(Dispatchers.IO) {
         try {
-            if (apiKey.isBlank()) {
+            if (getApiKey().isBlank()) {
                 return@withContext Result.failure(Exception("YouTube API anahtarı tanımlanmamış"))
             }
 
             val response = youtubeService.searchChannels(
                 query = query,
                 maxResults = maxResults,
-                apiKey = apiKey
+                apiKey = getApiKey()
             )
 
             if (response.isSuccessful) {
@@ -116,13 +117,13 @@ class YouTubeRepository @Inject constructor(
     suspend fun getPopularVideos(regionCode: String = "TR"): Result<List<VideoItem>> =
         withContext(Dispatchers.IO) {
             try {
-                if (apiKey.isBlank()) {
+                if (getApiKey().isBlank()) {
                     return@withContext Result.failure(Exception("YouTube API anahtarı tanımlanmamış"))
                 }
 
                 val response = youtubeService.getPopularVideos(
                     regionCode = regionCode,
-                    apiKey = apiKey
+                    apiKey = getApiKey()
                 )
 
                 if (response.isSuccessful) {

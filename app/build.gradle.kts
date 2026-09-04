@@ -17,13 +17,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        // API Keys - environment variable'dan oku
-        val youtubeApiKey = System.getenv("YOUTUBE_API_KEY") ?: ""
-        val openrouterApiKey = System.getenv("OPENROUTER_API_KEY") ?: ""
-
-        buildConfigField("String", "YOUTUBE_API_KEY", "\"$youtubeApiKey\"")
-        buildConfigField("String", "OPENROUTER_API_KEY", "\"$openrouterApiKey\"")
     }
 
     buildTypes {
