@@ -21,11 +21,9 @@ android {
         // API Keys - environment variable'dan oku
         val youtubeApiKey = System.getenv("YOUTUBE_API_KEY") ?: ""
         val openrouterApiKey = System.getenv("OPENROUTER_API_KEY") ?: ""
-        val googleClientId = System.getenv("GOOGLE_CLIENT_ID") ?: ""
 
         buildConfigField("String", "YOUTUBE_API_KEY", "\"$youtubeApiKey\"")
         buildConfigField("String", "OPENROUTER_API_KEY", "\"$openrouterApiKey\"")
-        buildConfigField("String", "GOOGLE_CLIENT_ID", "\"$googleClientId\"")
     }
 
     buildTypes {
@@ -91,9 +89,6 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     implementation("com.google.code.gson:gson:2.10.1")
-
-    // Google OAuth
-    implementation("com.google.android.gms:play-services-auth:20.7.0")
 
     // YouTube Data API Model
     implementation("com.google.apis:google-api-services-youtube:v3-rev20260820-2.0.0")
