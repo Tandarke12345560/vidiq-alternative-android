@@ -1,11 +1,13 @@
 package com.vidiqalternative.data.api
 
+import com.vidiqalternative.data.repository.ApiKeyRepository
 import com.vidiqalternative.data.web.DDGSearchService
 import com.vidiqalternative.data.web.WebContent
 import com.vidiqalternative.data.web.WebFetchService
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -15,6 +17,7 @@ class AICoachTools @Inject constructor(
     private val ddgSearch: DDGSearchService,
     private val webFetch: WebFetchService,
     private val youtubeService: YouTubeApiService,
+    private val apiKeyRepository: ApiKeyRepository,
     private val gson: Gson
 ) {
 
@@ -153,7 +156,7 @@ class AICoachTools @Inject constructor(
         val query = args["query"] as? String ?: return "Sorgu eksik"
 
         return try {
-            val apiKey = com.vidiqalternative.BuildConfig.YOUTUBE_API_KEY
+            val apiKey = apiKeyRepository.youtubeApiKey.first()
             if (apiKey.isBlank()) {
                 return "YouTube API anahtarı tanımlanmamış"
             }

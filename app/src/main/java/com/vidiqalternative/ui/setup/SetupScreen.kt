@@ -6,7 +6,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Key
 import androidx.compose.material.icons.filled.SmartToy
-import androidx.compose.material.icons.filled.YouTube
+import androidx.compose.material.icons.filled.VideoLibrary
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -92,7 +92,7 @@ fun SetupScreen(
                 onValueChange = { viewModel.updateYoutubeKey(it) },
                 label = { Text("YouTube Data API Key") },
                 leadingIcon = {
-                    Icon(Icons.Default.YouTube, contentDescription = null)
+                    Icon(Icons.Default.VideoLibrary, contentDescription = null)
                 },
                 trailingIcon = {
                     TextButton(onClick = { showYoutubeKey = !showYoutubeKey }) {
