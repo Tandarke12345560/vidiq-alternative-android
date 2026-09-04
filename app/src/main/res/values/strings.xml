@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VidIQ Alternatif</string>
+    <string name="home">Ana Sayfa</string>
+    <string name="search">Ara</string>
+    <string name="analytics">Analitikler</string>
+    <string name="ai_coach">AI Koç</string>
+    <string name="settings">Ayarlar</string>
+    <string name="search_hint">Video veya kanal ara…</string>
+    <string name="ai_chat_hint">Sorunuzu yazın…</string>
+    <string name="free">Ücretsiz</string>
+    <string name="loading">Yükleniyor…</string>
+    <string name="error">Bir hata oluştu</string>
+    <string name="no_results">Sonuç bulunamadı</string>
+    <string name="refresh">Yenile</string>
+    <string name="save">Kaydet</string>
+    <string name="cancel">İptal</string>
+    <string name="ok">Tamam</string>
+    <string name="competitor_analysis">Rakip Analizi</string>
+    <string name="video_analysis">Video Analizi</string>
+    <string name="keyword_research">Anahtar Kelime Araştırması</string>
+    <string name="channel_analysis">Kanal Analizi</string>
+    <string name="seo_score">SEO Skoru</string>
+    <string name="views">Görüntülenme</string>
+    <string name="subscribers">Abone</string>
+    <string name="videos">Video</string>
+    <string name="likes">Beğeni</string>
+    <string name="comments">Yorum</string>
+    <string name="search_web">Web\'de Ara</string>
+    <string name="fetch_page">Sayfa İçeriği Çek</string>
+    <string name="search_youtube">YouTube\'da Ara</string>
+</resources>
