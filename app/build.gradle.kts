@@ -88,7 +88,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:20.7.0")
 
     // YouTube Data API Model
-    implementation("com.google.apis:google-api-services-youtube:v3-rev20240301-2.0.0")
+    implementation("com.google.apis:google-api-services-youtube:v3-rev20260820-2.0.0")
 
     // Room - Local Cache
     implementation("androidx.room:room-runtime:2.6.1")
