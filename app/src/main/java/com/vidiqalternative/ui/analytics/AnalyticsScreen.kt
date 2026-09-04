@@ -158,7 +158,7 @@ fun AnalyticsScreen(
                                 engagement = "${(1..15).random()}%"
                             )
                             if (index < 4) {
-                                HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+                                Divider(modifier = Modifier.padding(vertical = 8.dp))
                             }
                         }
                     }
