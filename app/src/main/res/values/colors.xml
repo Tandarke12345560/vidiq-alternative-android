@@ -9,6 +9,9 @@
     <color name="surface">#FFFFFFFF</color>
     <color name="error">#FFB00020</color>
 
+    <!-- Launcher Icon Background -->
+    <color name="ic_launcher_background">#FF282828</color>
+
     <!-- YouTube Red -->
     <color name="youtube_red">#FFFF0000</color>
     <color name="youtube_dark">#FF282828</color>
